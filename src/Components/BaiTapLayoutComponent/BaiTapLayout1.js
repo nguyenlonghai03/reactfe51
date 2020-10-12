@@ -12,7 +12,7 @@ export default class BaiTapLayout1 extends Component {
             <div>
                 <Header />
                 <SliderComponent />
-                <ProductComponent />
+                <ProductListComponent />
                 <FooterComponent />
             </div>
         )

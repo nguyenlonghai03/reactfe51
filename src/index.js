@@ -1,14 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import DemoStateless from './Components/DemoStateless';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import DemoStateless from "./Components/DemoStateless";
+
+// Cấu hình redux
+import { rootReducer } from "./Redux/Reducers/rootReducer";
+//Provider để cung cấp store đến các component
+import { Provider } from "react-redux";
+// Tạo store
+import { createStore } from "redux";
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-
-    <App />,
-  document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
