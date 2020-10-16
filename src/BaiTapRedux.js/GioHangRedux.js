@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 class GioHangRedux extends Component {
   renderGioHang = () => {
-    return <SanPhamGHRedux />;
+    return <SanPhamGHRedux spGioHang={this.props.gioHang} />;
   };
 
   render() {

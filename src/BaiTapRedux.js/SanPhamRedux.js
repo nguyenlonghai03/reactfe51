@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default class SanPhamRedux extends Component {
+class SanPhamRedux extends Component {
   render() {
     let { sanPham } = this.props;
     return (
@@ -14,9 +15,34 @@ export default class SanPhamRedux extends Component {
         <div className="card-body">
           <h4 className="card-title">{sanPham.tenSP}</h4>
           <p className="card-text">{sanPham.giaBan}</p>
-          <button className="btn btn-danger">Thêm giỏ hàng</button>
+          <button
+            className="btn btn-danger"
+            onClick={() => {
+              this.props.themGioHang(sanPham);
+            }}
+          >
+            Thêm giỏ hàng
+          </button>
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    themGioHang: (sanPhamClick) => {
+      let spGH = { ...sanPhamClick, soLuong: 1 };
+      const action = {
+        type: "THEM_GIO_HANG",
+        spGH,
+      };
+      dispatch(action);
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SanPhamRedux);

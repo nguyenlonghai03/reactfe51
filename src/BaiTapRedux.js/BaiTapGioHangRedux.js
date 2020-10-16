@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import danhSachSanPham from "../Components/BaiTapGioHang/dataGioHang.json";
 import GioHangRedux from "./GioHangRedux";
 import SanPhamRedux from "./SanPhamRedux";
 
-export default class BaiTapGioHangRedux extends Component {
+class BaiTapGioHangRedux extends Component {
   renderSanPham = () => {
     return danhSachSanPham.map((sanPham, index) => {
       return (
@@ -19,7 +20,7 @@ export default class BaiTapGioHangRedux extends Component {
       <div className="container">
         <h3 className="text-center">BÀI TẬP GIỎ HÀNG REDUX1</h3>
         <div className="">
-          <div className="text-right">Giỏ hàng (0)</div>
+          <div className="text-right">Giỏ hàng ({this.props.tinhTongSo})</div>
           <GioHangRedux />
         </div>
         <div className="row">{this.renderSanPham()}</div>
@@ -27,3 +28,15 @@ export default class BaiTapGioHangRedux extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    tinhTongSo: () => {
+      dispatch({
+        type: "TINH_TONG",
+      });
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(BaiTapGioHangRedux);
